@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-heading: 'DM Serif Display', serif;
+  --font-label: 'Inter', system-ui, sans-serif;
+
+  /* background: white / light gray */
+  --background-50: 0.985 0.002 286;
+  --background-100: 0.96 0.005 286;
+  --background-200: 0.92 0.01 286;
+  --background-300: 0.87 0.015 286;
+  --background-400: 0.80 0.02 286;
+  --background-500: 0.72 0.025 286;
+  --background-600: 0.65 0.03 286;
+  --background-700: 0.55 0.035 286;
+  --background-800: 0.42 0.03 286;
+  --background-900: 0.28 0.025 286;
+  --background-950: 0.15 0.02 286;
+
+  /* primary: navy blue */
+  --primary-50: 0.96 0.015 265;
+  --primary-100: 0.90 0.03 265;
+  --primary-200: 0.82 0.05 265;
+  --primary-300: 0.72 0.07 265;
+  --primary-400: 0.60 0.09 265;
+  --primary-500: 0.42 0.10 265;
+  --primary-600: 0.36 0.105 265;
+  --primary-700: 0.30 0.11 265;
+  --primary-800: 0.24 0.095 265;
+  --primary-900: 0.18 0.07 265;
+  --primary-950: 0.12 0.05 265;
+
+  /* accent: electric blue */
+  --accent-50: 0.96 0.02 250;
+  --accent-100: 0.90 0.05 250;
+  --accent-200: 0.82 0.08 250;
+  --accent-300: 0.72 0.12 250;
+  --accent-400: 0.62 0.16 250;
+  --accent-500: 0.55 0.20 250;
+  --accent-600: 0.48 0.20 250;
+  --accent-700: 0.40 0.18 250;
+  --accent-800: 0.32 0.14 250;
+  --accent-900: 0.24 0.10 250;
+  --accent-950: 0.16 0.06 250;
+
+  /* secondary: neutral warm gray */
+  --secondary-50: 0.97 0.005 85;
+  --secondary-100: 0.93 0.01 85;
+  --secondary-200: 0.87 0.02 85;
+  --secondary-300: 0.78 0.03 85;
+  --secondary-400: 0.68 0.04 85;
+  --secondary-500: 0.58 0.04 85;
+  --secondary-600: 0.50 0.035 85;
+  --secondary-700: 0.42 0.03 85;
+  --secondary-800: 0.32 0.025 85;
+  --secondary-900: 0.24 0.02 85;
+  --secondary-950: 0.16 0.015 85;
+
+  /* foreground: dark text */
+  --foreground-50: 0.97 0.002 286;
+  --foreground-100: 0.93 0.004 286;
+  --foreground-200: 0.87 0.006 286;
+  --foreground-300: 0.78 0.01 286;
+  --foreground-400: 0.68 0.015 286;
+  --foreground-500: 0.58 0.02 286;
+  --foreground-600: 0.48 0.025 286;
+  --foreground-700: 0.38 0.03 286;
+  --foreground-800: 0.28 0.025 286;
+  --foreground-900: 0.18 0.02 286;
+  --foreground-950: 0.10 0.015 286;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: oklch(var(--background-50));
+  color: oklch(var(--foreground-900));
+}
+
+/* ========================================
+   ANIMATION SYSTEM
+   ======================================== */
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-in-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-down-mobile {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 400px;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Animation utility classes */
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease-out both;
+}
+
+.animate-fade-in-down {
+  animation: fade-in-down 0.4s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out both;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.4s ease-out both;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-from-right 0.4s ease-out both;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-from-left 0.4s ease-out both;
+}
+
+.animate-mobile-menu-in {
+  animation: slide-down-mobile 0.25s ease-out both;
+  overflow: hidden;
+}
+
+/* Staggered children animations */
+.stagger-children > * {
+  opacity: 0;
+  animation: fade-in-up 0.5s ease-out forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 80ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 160ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 240ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 320ms; }
+.stagger-children > *:nth-child(6) { animation-delay: 400ms; }
+.stagger-children > *:nth-child(7) { animation-delay: 480ms; }
+.stagger-children > *:nth-child(8) { animation-delay: 560ms; }
+.stagger-children > *:nth-child(9) { animation-delay: 640ms; }
+.stagger-children > *:nth-child(10) { animation-delay: 720ms; }
+.stagger-children > *:nth-child(11) { animation-delay: 800ms; }
+.stagger-children > *:nth-child(12) { animation-delay: 880ms; }
+
+/* Skeleton shimmer effect */
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(var(--secondary-100) / 0) 0%,
+    oklch(var(--secondary-100) / 0.6) 50%,
+    oklch(var(--secondary-100) / 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Link underline animation */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* Scrollbar styling */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: oklch(var(--background-300));
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--background-400));
+}
+
+/* Hide scrollbar for horizontal scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
