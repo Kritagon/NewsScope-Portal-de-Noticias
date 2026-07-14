@@ -12,14 +12,19 @@ async function checkApiStatus(): Promise<boolean> {
   if (demoChecked) return useDemo;
   try {
     const res = await fetch(`${API_BASE}/top-headlines?country=us&pageSize=1`);
-    if (!res.ok) {
+
+    if (res.status === 404) {
+      console.info(
+        "[NewsAPI] Proxy not available (404) — using demo data. Connect Supabase for real NewsAPI data in production."
+      );
+      useDemo = true;
+    } else if (!res.ok) {
       const body = await res.json().catch(() => undefined);
       console.error("[NewsAPI] checkApiStatus failed", {
         endpoint: "/api/news/top-headlines",
         status: res.status,
         code: (body as Record<string, unknown>)?.code,
         message: (body as Record<string, unknown>)?.message,
-        statusText: res.statusText,
       });
       if (res.status === 401) {
         console.error(
@@ -36,7 +41,17 @@ async function checkApiStatus(): Promise<boolean> {
     }
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : String(err);
-    console.error("[NewsAPI] checkApiStatus network error", { error: msg });
+    if (
+      msg.includes("fetch") ||
+      msg.includes("NetworkError") ||
+      msg.includes("Failed to fetch")
+    ) {
+      console.info(
+        "[NewsAPI] Network unavailable (expected without proxy) — using demo data."
+      );
+    } else {
+      console.error("[NewsAPI] checkApiStatus network error", { error: msg });
+    }
     useDemo = true;
   }
   demoChecked = true;
